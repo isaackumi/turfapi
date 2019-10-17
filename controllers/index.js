@@ -4,10 +4,10 @@ const router = express.Router();
 const User = require('../models/users');
 const secretKey='this_is_a_key';
 
-
+/*
 router.get('/', (req, res) => {
     //res.status(200).json({message:'it works'});
-    res.render('index',{layout:false});
+    //res.render('index',{layout:false});
 
     
 });
@@ -32,7 +32,7 @@ router.post('/signin', (req, res) => {
 
 });
 
-/*
+
 router.post('/signup', (req, res) => {
     const data=req.body;
     console.log(data);

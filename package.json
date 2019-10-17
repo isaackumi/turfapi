@@ -4,9 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha || true",
     "lint": "/node_modules/bin/eslint *.js --fix",
-    "app": "nodemon app.js"
+    "app": "nodemon app.js",
+    "now-start":"node .",
+    "build":""
   },
   "keywords": [],
   "author": "",
