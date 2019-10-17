@@ -7,7 +7,7 @@
     "test": "mocha || true",
     "lint": "/node_modules/bin/eslint *.js --fix",
     "app": "nodemon app.js",
-    "now-start":"node .",
+    "start":"node app.js",
     "build":""
   },
   "keywords": [],
