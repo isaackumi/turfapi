@@ -45,7 +45,9 @@ router.post('/booking', (req, res) => {
 
 
 */
-
+router.get('/try', (req, res) => {
+    res.status(200).json({message:'It works'});
+});
 router.post('/signup',async (req, res) => {
     const { username,email,password}=req.body;
     console.log(username,password,email)
