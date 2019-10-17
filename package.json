@@ -5,10 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha || true",
-    "lint": "/node_modules/bin/eslint *.js --fix",
-    "app": "nodemon app.js",
-    "start":"node app.js",
-    "build":""
+    "start":"node app.js"
+    
   },
   "keywords": [],
   "author": "",
