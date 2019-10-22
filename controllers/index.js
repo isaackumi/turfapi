@@ -45,12 +45,43 @@ router.post('/booking', (req, res) => {
 
 
 */
-router.get('/try', (req, res) => {
-    res.status(200).json({message:'It works'});
+router.get('/users', async (req, res) => {
+
+     await User.find()
+    .exec()
+    .then( data => {
+       res.send(data);
+       console.log(data)
+    })
+    .catch( () => {
+        res.status(404).json({message:"No user was found"});
+
+    });
+
+
+    //const data = users.toJSON({users})
+
+    
+});
+
+router.get('/users/:id',async (req, res) => {
+
+    const id = req.params.id
+
+   await User.findById({_id:id})
+    .exec()
+    .then( data => {
+        res.send(data)
+        console.log(data)
+    })
+    .catch( () => {
+         res.json({message:"User not found"});
+    })
+
 });
 router.post('/signup',async (req, res) => {
     const { username,email,password}=req.body;
-    console.log(username,password,email)
+    
     
     try {
        const schema=Joi.object(
@@ -69,10 +100,10 @@ router.post('/signup',async (req, res) => {
         }
         let user = await User.create(value);
         console.log(user)
-        const token =jwt.sign({id:user._id},secretKey);
-        console.log(`The token is ${token}`)
+        //const token =jwt.sign({id:user._id},secretKey);
+        //console.log(`The token is ${token}`)
 
-        return res.status(201).json({username,email,token});
+        return res.status(201).json({username,email});
         
     } catch (error) {
         return res.status(422).json({"message":error});
@@ -121,6 +152,39 @@ router.post('/signin', async (req, res) => {
     }
     
 });
+
+
+router.put('/users/:id',async (req, res) => {
+
+    try {
+    const id = req.params.id;
+    const schema = Joi.object( {
+        username:Joi.string().alphanum().min(3).optional(),
+        email:Joi.string().email().optional(),
+        password:Joi.string().optional()
+    })
+    const { error,value} = schema.validate(req.body,schema);
+    
+    if (error) {
+        res.status(422).json({message:"cannot Update user"});
+        //console.log('Cannot update user')     
+    }
+
+
+    const { data } = value;
+    
+    let user = await User.update({_id:id},{$set:data})
+    res.status(200).json({user});
+
+    } catch (error) {
+       res.status(404).json({message:'An error occured '});
+        console.error(error)
+    }
+
+
+  
+});
+
 
 
 

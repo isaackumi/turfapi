@@ -4,6 +4,7 @@ const bcrypt=require('bcrypt-nodejs');
 const schema=mongoose.Schema({
 
     username:{
+        id:mongoose.Schema.Types.ObjectId,
         type:String,
         trim:true
     },
