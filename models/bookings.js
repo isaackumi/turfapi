@@ -4,21 +4,24 @@ const schema = new mongoose.Schema({
 
     id:mongoose.Types.ObjectId
 
-    facilityName:{
+    facility:{
         type:String,
-        trim:true
+        location: String,
+        description: Text,
+        price:String,
+        availability:Boolean
     }
 
     startDate:{
-
+    type: Date
     }
 
     endDate:{
-
+    type:Date
     }
 
     price:{
-
+        type:Number
     },
 
     reserved: [
