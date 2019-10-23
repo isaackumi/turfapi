@@ -8,7 +8,8 @@ const morgan=require('morgan')
 const cors = require('cors')
 //const user=require('./models/users');
 //const User=require('./models/users');
-const index=require('./controllers/index')
+const UserControllers=require('./controllers/userController')
+const BookingControllers=require('./controllers/bookingController')
 
 const connectDB=require('./config/db_connection')
 
@@ -42,11 +43,22 @@ app.set('trust proxy', true);
 // Static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
  
+//app.use(app.router)
 
-app.use('/',index);
+/*
+app.use('/',require('./controllers/userController'));
+app.use('/',require('./controllers/bookingController'));
+
+*/
+app.use('/', [UserControllers, BookingControllers]);
+
+/*
+
 app.use('*',(req,res,next)=>{
     res.sendStatus('404');
 })
+
+*/
 
 const server =http.createServer(app)
 

@@ -2,26 +2,22 @@ const mongoose=require('mongoose')
 
 const schema = new mongoose.Schema({
 
-    id:mongoose.Types.ObjectId
+    id:mongoose.Types.ObjectId,
 
     facility:{
         type:String,
         location: String,
-        description: Text,
+        description: String,
         price:String,
-        availability:Boolean
-    }
+        availability:{type:Boolean, default:false}
+    },
 
     startDate:{
     type: Date
-    }
+    },
 
     endDate:{
     type:Date
-    }
-
-    price:{
-        type:Number
     },
 
     reserved: [
