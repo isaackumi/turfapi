@@ -2,33 +2,21 @@ const mongoose=require('mongoose')
 
 const schema = new mongoose.Schema({
 
-    id:mongoose.Types.ObjectId,
-
-    facility:{
-        type:String,
-        location: String,
-        description: String,
-        price:String,
-        availability:{type:Boolean, default:false}
+    event:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Event'
     },
 
-    startDate:{
-    type: Date
-    },
-
-    endDate:{
-    type:Date
-    },
-
-    reserved: [
-        {
-            from: String,
-            to: String
-        }
-    ]
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    }
 
 
-})
+   
+   
+    
+}, {timestamps:true})
 
 
 

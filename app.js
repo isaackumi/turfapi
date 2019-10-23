@@ -43,22 +43,15 @@ app.set('trust proxy', true);
 // Static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
  
-//app.use(app.router)
 
-/*
-app.use('/',require('./controllers/userController'));
-app.use('/',require('./controllers/bookingController'));
-
-*/
 app.use('/', [UserControllers, BookingControllers]);
 
-/*
 
+// return 404 for all other routes not specified in this file
 app.use('*',(req,res,next)=>{
     res.sendStatus('404');
 })
 
-*/
 
 const server =http.createServer(app)
 
@@ -72,5 +65,5 @@ if (process.env.NODE_ENV !== 'test') {
 
 
 
-// Export app for testing
+// Export server for testing
 module.exports= server;
