@@ -29,7 +29,14 @@ const schema=mongoose.Schema({
     phoneNumber:{
         type:String,
         trim:true
-    }
+    },
+
+    createdEvents: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Event'
+        }
+      ]
 
 
 
