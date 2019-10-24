@@ -4,15 +4,15 @@ const router = express.Router();
 const User = require('../models/users');
 const secretKey='this_is_a_key';
 
-/*
+
 router.get('/', (req, res) => {
-    //res.status(200).json({message:'it works'});
-    //res.render('index',{layout:false});
+    
+    return res.render('index',{layout:false});
 
     
 });
 
-
+/*
 router.get('/booking', (req, res) => {
     res.render('booking1',{layout:false});
 });
