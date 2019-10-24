@@ -50,7 +50,7 @@ router.get('/users', async (req, res) => {
      await User.find()
     .exec()
     .then( data => {
-      return res.status(200).json({data});;
+      return res.status(200).json({data});
        //console.log(data)
     })
     .catch( () => {
@@ -72,7 +72,7 @@ router.get('/users/:id',async (req, res) => {
     .exec()
     .then( data => {
        return res.send(data)
-        console.log(data)
+        //console.log(data)
     })
     .catch( () => {
        return  res.json({message:"User not found"});
