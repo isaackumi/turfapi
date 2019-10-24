@@ -27,7 +27,7 @@ router.get('/events', async (req, res) => {
    .exec()
    .then( data => {
       return res.send(data);
-      console.log(data)
+      
    })
    .catch( () => {
      return  res.status(404).json({message:"No event found"});

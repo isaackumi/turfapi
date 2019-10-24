@@ -82,13 +82,13 @@ EventControllers
 ]
 );
 
-
+/*
 // return 404 for all other routes not specified in this file
 app.use('*',(req,res,next)=>{
     res.sendStatus('404');
 })
 
-
+*/
 const server =http.createServer(app)
 
 
