@@ -10,6 +10,7 @@ const cors = require('cors')
 //const User=require('./models/users');
 const UserControllers=require('./controllers/userController')
 const BookingControllers=require('./controllers/bookingController')
+const EventControllers=require('./controllers/eventController')
 
 const connectDB=require('./config/db_connection')
 
@@ -44,7 +45,12 @@ app.set('trust proxy', true);
 app.use('/public', express.static(path.join(__dirname, 'public')));
  
 
-app.use('/', [UserControllers, BookingControllers]);
+app.use('/',
+ [
+UserControllers, BookingControllers,
+EventControllers
+]
+);
 
 
 // return 404 for all other routes not specified in this file

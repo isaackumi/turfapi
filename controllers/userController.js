@@ -50,11 +50,11 @@ router.get('/users', async (req, res) => {
      await User.find()
     .exec()
     .then( data => {
-       res.send(data);
-       console.log(data)
+      return res.status(200).json({data});;
+       //console.log(data)
     })
     .catch( () => {
-        res.status(404).json({message:"No user was found"});
+       return res.status(404).json({message:"No user was found"});
 
     });
 
@@ -71,11 +71,11 @@ router.get('/users/:id',async (req, res) => {
    await User.findById({_id:id})
     .exec()
     .then( data => {
-        res.send(data)
+       return res.send(data)
         console.log(data)
     })
     .catch( () => {
-         res.json({message:"User not found"});
+       return  res.json({message:"User not found"});
     })
 
 });
