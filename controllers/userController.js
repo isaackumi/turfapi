@@ -7,7 +7,7 @@ const secretKey='this_is_a_key';
 
 router.get('/', (req, res) => {
     
-    return res.render('index',{layout:false});
+     res.render('index',{layout:false});
 
     
 });
