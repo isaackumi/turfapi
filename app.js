@@ -25,10 +25,10 @@ const port= process.env.PORT || 3000;
 app.use(cors())
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false,limit:'1mb' }))
  
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit:'1mb'}))
 
 // Log request to API using morgan
 app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'));
@@ -40,6 +40,7 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
 app.set('trust proxy', true);
+app.set('views', __dirname + '/views');
 
 // Static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
