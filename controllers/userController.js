@@ -5,12 +5,6 @@ const User = require('../models/users');
 const secretKey='this_is_a_key';
 
 
-router.get('/', (req, res) => {
-    
-     res.render('index',{layout:false});
-
-    
-});
 
 /*
 router.get('/booking', (req, res) => {
@@ -99,7 +93,7 @@ router.post('/signup',async (req, res) => {
             
         }
         let user = await User.create(value);
-        console.log(user)
+       
         //const token =jwt.sign({id:user._id},secretKey);
         //console.log(`The token is ${token}`)
 
@@ -114,7 +108,6 @@ router.post('/signin', async (req, res) => {
 
     const { email,password}= req.body;
     //console.log(req.body);
-
 
     try {
 
@@ -135,14 +128,15 @@ router.post('/signin', async (req, res) => {
     //console.log(email,password);
     const user= await User.getByEmail(email);
 
-    if (!user.validPassword(password)) {
-
+    if (!user.validPassword(password)) 
         return res.status(400).json({ 'message':'Incorrect password'});
+    //else
+    // const {req.session.client}=user._id;
         
-    }
+    
 
-    const token = jwt.sign({id:user._id} , process.env.SECRET_KEY);
-    return res.status(200).json({token});
+    //const token = jwt.sign({id:user._id} , process.env.SECRET_KEY);
+    //return res.status(200).json({token});
 
 
         

@@ -3,6 +3,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser=require('body-parser');
 const path=require('path')
+const session=require('express-session')
 const http=require('http')
 const morgan=require('morgan')
 const cors = require('cors')
@@ -11,6 +12,7 @@ const cors = require('cors')
 const UserControllers=require('./controllers/userController')
 const BookingControllers=require('./controllers/bookingController')
 const EventControllers=require('./controllers/eventController')
+const pagesControllers=require('./controllers/pagesControllers')
 
 const connectDB=require('./config/db_connection')
 
@@ -25,13 +27,17 @@ const port= process.env.PORT || 3000;
 app.use(cors())
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false,limit:'1mb' }))
+app.use(bodyParser.urlencoded({ extended: false }))
  
 // parse application/json
-app.use(bodyParser.json({limit:'1mb'}))
+app.use(bodyParser.json())
 
 // Log request to API using morgan
 app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'));
+
+app.use(session({
+    secret:'this_is_a_secret'
+}));
 
 
 
@@ -48,8 +54,10 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use('/',
  [
-UserControllers, BookingControllers,
-EventControllers
+UserControllers,
+ BookingControllers,
+EventControllers,
+pagesControllers
 ]
 );
 
