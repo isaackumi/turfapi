@@ -1,8 +1,12 @@
 const express = require('express');
 const Joi=require('@hapi/joi')
 const router = express.Router();
-const User = require('../models/users');
-const secretKey='this_is_a_key';
+const passport=require('passport')
+const User= require('../models/users');
+
+const LocalStrategy = require('passport-local').Strategy;
+
+//const secretKey='this_is_a_key';
 
 
 
@@ -97,13 +101,16 @@ router.post('/signup',async (req, res) => {
         //const token =jwt.sign({id:user._id},secretKey);
         //console.log(`The token is ${token}`)
 
-        return res.status(201).json({username,email});
+        //return res.status(201).json({username,email});
+        return res.redirect('/signin');
         
     } catch (error) {
         return res.status(422).json({"message":error});
     }
 });
 
+
+/*
 router.post('/signin', async (req, res) => {
 
     const { email,password}= req.body;
@@ -146,6 +153,24 @@ router.post('/signin', async (req, res) => {
     }
     
 });
+
+*/
+
+router.post('/signin', (req, res, next) => {
+    passport.authenticate('local', {
+      successRedirect: '/',
+      failureRedirect: '/signin',
+      failureFlash: true
+    })(req, res, next);
+  });
+  
+  // Logout
+  router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success_msg', 'You are logged out');
+    res.redirect('/signin');
+  });
+  
 
 
 router.put('/users/:id',async (req, res) => {

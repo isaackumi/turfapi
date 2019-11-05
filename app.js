@@ -6,6 +6,7 @@ const path=require('path')
 const session=require('express-session')
 const http=require('http')
 const morgan=require('morgan')
+const passport=require('passport')
 const cors = require('cors')
 //const user=require('./models/users');
 //const User=require('./models/users');
@@ -15,10 +16,15 @@ const EventControllers=require('./controllers/eventController')
 const pagesControllers=require('./controllers/pagesControllers')
 
 const connectDB=require('./config/db_connection')
+require('./config/passport')(passport);
 
 
 // Initialize app
 const app=express();
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // App will run on this port
 const port= process.env.PORT || 3000;
@@ -35,9 +41,19 @@ app.use(bodyParser.json())
 // Log request to API using morgan
 app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'));
 
-app.use(session({
-    secret:'this_is_a_secret'
-}));
+app.use(session(
+    {
+        secret: 'secret',
+        saveUninitialized: true,
+        resave: true
+    }
+    ))
+    
+app.use(function reqToResLocals(req, res, next){
+    res.locals.session = req.session;
+    res.locals.user = req.user;
+    next();
+  });
 
 
 
@@ -66,6 +82,7 @@ pagesControllers
 app.use('*',(req,res,next)=>{
     res.sendStatus('404');
 })
+
 
 
 const server =http.createServer(app)

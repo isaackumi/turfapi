@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Client } = require('./actions');
+const { forwardAuthenticated } = require('../config/auth');
 
 router.get('/', (req, res) => {
     
@@ -8,13 +9,13 @@ router.get('/', (req, res) => {
 });
 
 
-router.get('/signin', (req, res) => {
+router.get('/signin', forwardAuthenticated, (req, res) => {
     res.render('signin',{layout:false});
 
 });
 
 
-router.get('/signup', (req, res) => {
+router.get('/signup', forwardAuthenticated,(req, res) => {
     res.render('signup',{layout:false});
 });
 
