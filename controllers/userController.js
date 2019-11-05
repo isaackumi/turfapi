@@ -84,7 +84,7 @@ router.post('/signup',async (req, res) => {
     try {
        const schema=Joi.object(
         {
-            username:Joi.string().alphanum().min(3).required(),
+            username:Joi.string().required(),
             email:Joi.string().email().required(),
             password:Joi.string().required(),
             repeatPassword:Joi.ref(password)
@@ -167,7 +167,7 @@ router.post('/signin', (req, res, next) => {
   // Logout
   router.get('/logout', (req, res) => {
     req.logout();
-    req.flash('success_msg', 'You are logged out');
+    //req.flash('success_msg', 'You are logged out');
     res.redirect('/signin');
   });
   

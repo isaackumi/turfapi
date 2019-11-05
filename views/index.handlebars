@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {{#if title}}
+  <title>{{title}}</title>
+    {{else}}
     <title>TURF  &mdash; BOOKING </title>
+    {{/if}}
+   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -51,8 +56,14 @@
                 <li><a href="#home-section" class="nav-link">Home</a></li>
                 <li><a href="#teachers-section" class="nav-link">Our Team</a></li>
                 <li><a href="#courses-section" class="nav-link">Facilities</a></li>
-                <li><a href="/signin" class="nav-link">Sign In</a></li>
-                <li><a href="#/signin" class="nav-link">My Bookings</a></li>
+                {{#if session}}
+                      <li><a href="/logout" class="nav-link">Log Out</a></li>
+                      <li><a href="#/signin" class="nav-link">My Bookings</a></li>
+                    {{else}}
+                    <li><a href="/signin" class="nav-link">Sign In</a></li>
+                {{/if}}
+                
+                
                 
               </ul>
             </nav>
@@ -84,9 +95,10 @@
                   <p data-aos="fade-up" data-aos-delay="300"><a href="booking1.html" class="btn btn-primary py-3 px-5 btn-pill">Book Now</a></p>
 
                 </div>
+            {{#if session}}
 
--
-                <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
+            {{else}}
+            <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
 
                   <form method="post" class="form-box" action='signup'>
                     <h3 class="h4 text-black mb-4">Sign Up</h3>
@@ -108,6 +120,9 @@
                   </form>
 
                 </div>
+
+            {{/if}}
+-                
 
              
 

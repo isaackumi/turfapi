@@ -14,6 +14,7 @@ const UserControllers=require('./controllers/userController')
 const BookingControllers=require('./controllers/bookingController')
 const EventControllers=require('./controllers/eventController')
 const pagesControllers=require('./controllers/pagesControllers')
+const UrlAuth=require('./controllers/index')
 
 const connectDB=require('./config/db_connection')
 require('./config/passport')(passport);
@@ -49,9 +50,11 @@ app.use(session(
     }
     ))
     
-app.use(function reqToResLocals(req, res, next){
+app.use(function(req, res, next){
     res.locals.session = req.session;
+    console.log(res.locals.session)
     res.locals.user = req.user;
+    //console.log(res.locals.user)
     next();
   });
 
@@ -73,7 +76,8 @@ app.use('/',
 UserControllers,
  BookingControllers,
 EventControllers,
-pagesControllers
+pagesControllers,
+UrlAuth
 ]
 );
 

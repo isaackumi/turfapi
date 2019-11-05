@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Client } = require('./actions');
-const { forwardAuthenticated } = require('../config/auth');
+const { forwardAuthenticated ,ensureAuthenticated} = require('../config/auth');
 
 router.get('/', (req, res) => {
     
