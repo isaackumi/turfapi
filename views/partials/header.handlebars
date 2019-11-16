@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{#if title}}
+  <title>{{title}}</title>
+    {{else}}
+    <title>TURF  &mdash; BOOKING </title>
+    {{/if}}
+   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/jquery-ui.css">
+    <link rel="stylesheet" href="/public/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/public/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/public/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="/public/css/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" href="/public/css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="/public/fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="/public/css/aos.css">
+
+    <link rel="stylesheet" href="/public/css/oneschoolstyle.css">
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <div class="site-logo mr-auto w-25"><a href="/">TURF Booking</a></div>
+
+          <div class="mx-auto text-center">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
+                <li><a href="#home-section" class="nav-link">Home</a></li>
+                <li><a href="#teachers-section" class="nav-link">Our Team</a></li>
+                <li><a href="#courses-section" class="nav-link">Facilities</a></li>
+         
+                
+              
+                      
+                      
+                    
+                    <li><a href="/signin" class="nav-link">Sign In</a></li>
+              
+              </ul>
+            </nav>
+          </div>
+
+          <div class="ml-auto w-25">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
+                <li class="cta"><a href="#contact-section" class="nav-link"><span>Contact Us</span></a></li>
+              </ul>
+            </nav>
+            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+          </div>
+        </div>
+      </div>
+
+    </header>
+
+    <div class="intro-section" id="home-section">
+
+      <div class="slide-1" style="background-image: url('/public/images/field_2.jpg');">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                  <h1  data-aos="fade-up" data-aos-delay="100">Be Fit</h1>
+                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">If you can't outplay them outwork them.</p>
+                  <p data-aos="fade-up" data-aos-delay="300"><button type="button" class="btn btn-primary py-3 px-5 btn-pill" data-toggle="modal" data-target="#booking-modal">Book Now</button></p>
+
+                </div>
+            
+
+            
+            <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
+
+                  <form method="post" class="form-box" action='signup'>
+                    <h3 class="h4 text-black mb-4">Sign Up</h3>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="username" name='username'>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Email Addresss" name='email'>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control" placeholder="Password" name='password'>
+                    </div>
+                    <div class="form-group mb-4">
+                      <input type="password" class="form-control" placeholder="Re-type Password" name='repeatPassword'>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-primary btn-pill" value="Sign up">
+                    </div>
+                  </form>
+
+                </div>
+
+            
+            
+
+             
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--  Booking Modal -->
+  <div class="modal fade" id="booking-modal" tabindex="-1" role="dialog" aria-labelledby="BookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Booking Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" id="bookingForm">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Facility Name:</label>
+            <input type="text" class="form-control" name="NameOfFacility">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Location:</label>
+            <input class="form-control" name="location"></input>
+          </div>
+           <div class="form-group">
+            <label for="message-text" class="col-form-label">Price:</label>
+            <input class="form-control" name="price"></input>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" onclick="submitForm()" class="btn btn-primary btn-pill" value="Book">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Dashborad Modal -->
+
+<!-- Modal Editiranje -->
+<div id="uredimodal" class="modal">
+<div class="modal-content">
+        <h4>Dashboard</h4>
+        <form method="POST">
+            <div class="input-field col s12">
+                <label for="email" class="">Naslov Kataloga</label>
+                <input id="naslov" name="naslov" class="required validate" aria-required="true" type="text" value="<?php echo $row['naziv']; ?>" required>
+            </div>
+            <div class="input-field col s12">
+                                        <div class="select-wrapper"><span class="caret">▼</span><input class="select-dropdown" readonly="true" data-activates="select-options-cde9ce7d-c5d2-8deb-ad2c-e8a5668916c4" value="Choose your option" style="" type="text"><ul id="select-options-cde9ce7d-c5d2-8deb-ad2c-e8a5668916c4" class="dropdown-content select-dropdown" style="width: 458px; position: absolute; top: 0px; left: 0px; opacity: 1; display: none;">
+                                        <li class=""><span>Aktivno</span></li>
+                                        <li class=""><span>Neaktivno</span></li></ul>
+                                        <select id="status" name="status" class="initialized">
+                                            <option value="1">Akivno</option>
+                                            <option value="0">Neaktivno</option>
+                                        </select></div>
+                                        <label>Odaberite status kataloga</label>
+                                    </div>
+
+    </div>
+    <div class="modal-footer">
+    <button type="submit" style="float:right;" class="waves-effect waves-light btn m-b-xs"><i class="material-icons left">input</i>Spremi</button>
+    </div>
+    </form>
+</div>

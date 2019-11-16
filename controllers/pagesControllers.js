@@ -4,18 +4,25 @@ const { Client } = require('./actions');
 const { forwardAuthenticated ,ensureAuthenticated} = require('../config/auth');
 
 router.get('/', (req, res) => {
+    console.log(req.session)
+    //console.log(req.user)
     
-    res.render('index',{layout:false});
+    res.render('index',{layout:false, user:req,title:'Home'});
+});
+
+router.get('/single', (req, res) => {
+    res.render('single',{layout:false});
+
 });
 
 
-router.get('/signin', forwardAuthenticated, (req, res) => {
+router.get('/signin',  (req, res) => {
     res.render('signin',{layout:false});
 
 });
 
 
-router.get('/signup', forwardAuthenticated,(req, res) => {
+router.get('/signup',(req, res) => {
     res.render('signup',{layout:false});
 });
 

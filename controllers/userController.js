@@ -3,6 +3,7 @@ const Joi=require('@hapi/joi')
 const router = express.Router();
 const passport=require('passport')
 const User= require('../models/users');
+const Service =  require('../services/main');
 
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -43,16 +44,48 @@ router.post('/booking', (req, res) => {
 
 
 */
+
+// GET: GET ALL CAFETERIAS
+async function getAllUsers(req, res, next){
+    const users =  await Service.UserService.findAllUsers();
+    //console.log(users);
+    // res.json(users);
+    // eslint-disable-next-line no-useless-catch
+    try{
+        if(users){
+            //console.log('Hello wworld');
+            //res.status(200).json(users);
+            console.log(users[0]);
+            let myObject = {}
+            for (var key in users){
+                console.log(key);
+                myObject[key] = users[key];
+            } 
+            return res.status(200).json(myObject);
+           //return res.status(200).json(users);
+        }else{
+           return res.status(404).json({
+                message: 'No user is found'
+            });
+        }
+    }catch(error){
+        throw error;
+    }
+}
+
 router.get('/users', async (req, res) => {
+    
 
      await User.find()
     .exec()
-    .then( data => {
+    .then(data=> {
+        //console.log('Data', data);
       return res.send(data);
-       //console.log(data)
     })
     .catch( () => {
-       return res.status(404).json({message:"No user was found"});
+       return res.status(404).json(
+           {message:"No user was found"}
+        );
 
     });
 
@@ -189,7 +222,6 @@ router.put('/users/:id',async (req, res) => {
         //console.log('Cannot update user')     
     }
 
-
     const { data } = value;
     
     let user = await User.update({_id:id},{$set:data})
@@ -199,12 +231,11 @@ router.put('/users/:id',async (req, res) => {
        res.status(404).json({message:'An error occured '});
         console.error(error)
     }
-
-
   
 });
 
 
 
 
-module.exports=router
+module.exports = router
+module.exports.getAllUsers = getAllUsers;

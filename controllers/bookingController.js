@@ -1,11 +1,10 @@
 const express = require('express');
-const Joi=require('@hapi/joi')
 const router = express.Router();
 const Booking=require('../models/bookings')
 
 
 
-
+/*
 router.post('/booking',async (req, res) => {   
     
     try {
@@ -34,5 +33,31 @@ router.post('/booking',async (req, res) => {
     }
 });
 
+*/
+router.post('/booking',async function(req,res){
+    //const data = req.body
+	var book = new Booking({
+		price:req.body.price
+	
+	});
+ await book.save()
+.then(function(result){
+	console.log(result);
+	return res.send(result);
+}).catch(function(err){console.log(err);});
 
+});
+
+
+
+
+
+router.get('/booking', async (req, res) => {
+
+    await Booking.find()
+    .exec()
+    .then(data => res.send(data))
+    .catch(err => res.status(500).json({'message':err}))
+
+});
 module.exports = router 

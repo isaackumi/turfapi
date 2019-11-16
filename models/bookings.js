@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-
+// TO DO : install moment
 const schema = new mongoose.Schema({
 
     asset:
@@ -17,13 +17,13 @@ const schema = new mongoose.Schema({
     endDate:
     {
         type: Date, 
-            default:Date.now()
+            default:Date.now
         
     },
     price:
     {
         type:Number,
-        defualt:0
+        defualt:0.00
     }
 
 

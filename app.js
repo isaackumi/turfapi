@@ -1,10 +1,12 @@
+/* eslint-disable no-undef */
 
 const express = require('express');
 const exphbs = require('express-handlebars');
+const mongoose = require('mongoose')
+const compression=require('compression')
 const bodyParser=require('body-parser');
 const path=require('path')
 const session=require('express-session')
-const http=require('http')
 const morgan=require('morgan')
 const passport=require('passport')
 const cors = require('cors')
@@ -15,20 +17,27 @@ const BookingControllers=require('./controllers/bookingController')
 const EventControllers=require('./controllers/eventController')
 const pagesControllers=require('./controllers/pagesControllers')
 const UrlAuth=require('./controllers/index')
+const MessageUsController=require('./controllers/messageUsController')
+const userRoutes = require('./routes/users');
 
-const connectDB=require('./config/db_connection')
 require('./config/passport')(passport);
 
 
-// Initialize app
+// Initialize app8
 const app=express();
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
+const db=require('./config/db_connection')
 
-// App will run on this port
-const port= process.env.PORT || 3000;
+mongoose.Promise = global.Promise;
+
+
+
+ 
+// compress responses
+app.use(compression())
 
 // cors middleware
 app.use(cors())
@@ -52,11 +61,22 @@ app.use(session(
     
 app.use(function(req, res, next){
     res.locals.session = req.session;
-    console.log(res.locals.session)
-    res.locals.user = req.user;
+    //console.log(res.locals.session)
+    res.locals.user = req.user || null;
     //console.log(res.locals.user)
     next();
   });
+
+
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    
+    if (req.method === "OPTIONS") {
+        res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+        return res.status(200).json({});
+    }
+    next();
+});
 
 
 
@@ -69,7 +89,7 @@ app.set('views', __dirname + '/views');
 
 // Static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
- 
+app.use("/user", userRoutes);
 
 app.use('/',
  [
@@ -77,7 +97,8 @@ UserControllers,
  BookingControllers,
 EventControllers,
 pagesControllers,
-UrlAuth
+UrlAuth,
+MessageUsController
 ]
 );
 
@@ -88,18 +109,10 @@ app.use('*',(req,res,next)=>{
 })
 
 
-
-const server =http.createServer(app)
-
-
-if (process.env.NODE_ENV !== 'test') {
-   server.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-});
- 
-}
+  // export app for testing
+module.exports = app;
 
 
 
-// Export server for testing
-module.exports= server;
+
+
