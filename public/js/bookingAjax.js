@@ -80,15 +80,14 @@ populateRankings(json)
  function loadRankings()
   {
 	const request = new XMLHttpRequest();
-	request.open('get','http://localhost:3000/events',true);
+	request.open('get','http://turfapi.herokuapp.com/events/');
 	request.onload = () => {
-		try {
-			const json =   JSON.parse(request.responseText);
-			populateRankings(json);
-		} catch (err) {
-			console.warn('Could not load rankings!')
+	
 			
-		}
+			const json =   JSON.parse(request.responseText);
+			//console.log(json)
+			return populateRankings(json);
+		 
 	};
 	request.send();
 
@@ -108,7 +107,7 @@ populateRankings(json)
 		const tr = document.createElement('tr');
 
 		// Next another forEach
-		row.forEach( (cell) => {
+		Object.keys.apply(row).forEach( (cell) => {
 			//console.log(cell);
 			const td = document.createElement('td');
 			td.textContent = cell;

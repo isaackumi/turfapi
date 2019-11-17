@@ -12,7 +12,8 @@ router.post('/events', async function(req,res){
         {
         nameOfFacility : req.body.title,
         price : req.body.price,
-        location : req.body.location
+        location : req.body.location,
+        username: req.body.username
     }
     );
  await event.save()
