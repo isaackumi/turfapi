@@ -56,6 +56,7 @@
                 <li><a href="#home-section" class="nav-link">Home</a></li>
                 <li><a href="#teachers-section" class="nav-link">Our Team</a></li>
                 <li><a href="#courses-section" class="nav-link">Facilities</a></li>
+                <li><a class="nav-link" data-toggle="modal" data-target="#Dashboard-modal">Dashboard</a></li>
          
                 
               
@@ -145,25 +146,37 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" id="bookingForm">
+        <form method="POST" id="bookingForm" action="events" >
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Facility Name:</label>
-            <input type="text" class="form-control" name="NameOfFacility">
+            <input type="text" class="form-control" name="title" required >
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Location:</label>
-            <input class="form-control" name="location"></input>
+            <input class="form-control" class="form-control is-valid" name="location" required>
+            <div class="valid-feedback">
+        Looks good!
+      </div>
           </div>
            <div class="form-group">
             <label for="message-text" class="col-form-label">Price:</label>
-            <input class="form-control" name="price"></input>
+            <input class="form-control" class="form-control is-valid" name="price" required>
+            <div class="valid-feedback">
+              Looks good!
+              </div>
+          </div>
+          <div class="form-group">
+          <input type="submit"  class="btn btn-success btn-pill" value="Book">
+          
           </div>
         </form>
       </div>
+      <!--
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <input type="submit" onclick="submitForm()" class="btn btn-primary btn-pill" value="Book">
+        <input type="submit" class="btn btn-primary btn-pill" value="Book">
       </div>
+      -->
     </div>
   </div>
 </div>
@@ -172,8 +185,8 @@
 <!-- Dashborad Modal -->
 
 <!-- Modal Editiranje -->
-<div id="uredimodal" class="modal">
-<div class="modal-content">
+<div id="uredimodal" class="modal fade" tabindex="-1" role="dialog" id="Dashboard2-modal">
+<div class="modal-content" >
         <h4>Dashboard</h4>
         <form method="POST">
             <div class="input-field col s12">
@@ -197,3 +210,56 @@
     </div>
     </form>
 </div>
+
+
+
+
+<!-- Dashboard Modal -->
+
+
+<div class="modal fade" id="Dashboard-modal" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+         <center><h3 class="modal-title">My Bookings</h3></center> 
+        </div>
+        <div class="modal-body">
+<!--		  <h5 class="text-center">Hello. Some text here.</h5> -->
+          <table class="table table-striped " id="rankings-table">
+            <thead id="tblHead">
+              <tr>
+                <th>Facilities</th>
+                <th>Location</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Days left</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Long Island, NY, USA</td>
+                <td>UCC</td>
+                <td class="text-right">45001</td>
+                <td class="text-right">5 days</td>
+              </tr>
+              <tr><td>Chicago, Illinois, USA</td>
+                <td>University of Ghana</td>
+                <td class="text-right">76455</td>
+                <td class="text-right">8 days</td>
+              </tr>
+              <tr><td>New York, New York, USA</td>
+                <td>UMAT</td>
+                <td class="text-right">39097</td>
+                <td class="text-right">3 days</td>
+              </tr>
+            </tbody>
+          </table>
+         
+		</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Save Changes</button>
+        </div>
+				
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

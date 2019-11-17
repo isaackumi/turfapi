@@ -10,13 +10,13 @@ router.post('/events', async function(req,res){
     
 	var event = new Event(
         {
-        name : req.body.nameOfFacility,
+        nameOfFacility : req.body.title,
         price : req.body.price,
         location : req.body.location
     }
     );
  await event.save()
-.then( result =>  res.send(result))
+.then( () =>  res.render('index',{layout:false}))
 .catch(err => res.status(500).json({'message':err}));
 
 });
