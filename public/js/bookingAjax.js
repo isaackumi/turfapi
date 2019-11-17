@@ -85,7 +85,7 @@ populateRankings(json)
 		try {
 			const json =   JSON.parse(request.responseText);
 			populateRankings(json);
-		} catch (error) {
+		} catch (err) {
 			console.warn('Could not load rankings!')
 			
 		}

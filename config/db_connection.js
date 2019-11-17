@@ -4,7 +4,7 @@ const mongoose=require('mongoose');
 
  
 
-module.exports.db_conn= mongoose.connect(process.env.DATABASE_URI,{
+module.exports.db_conn= mongoose.connect(`mongodb://magicians:pass123@ds211368.mlab.com:11368/sportsbooking`,{
     useUnifiedTopology: true,
     useNewUrlParser: true
 })
