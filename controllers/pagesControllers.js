@@ -4,8 +4,9 @@ const { Client } = require('./actions');
 const { forwardAuthenticated ,ensureAuthenticated} = require('../config/auth');
 
 router.get('/',(req, res) => {
+    //console.log('Testing from PagesController',req.query)
    
-    res.render('index',{layout:false, user:'Isaac',title:'Home'});
+    res.render('index',{layout:false,title:'Home'});
 });
 
 router.get('/single', (req, res) => {

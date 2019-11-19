@@ -191,7 +191,7 @@ router.post('/signin', async (req, res) => {
 
 */
 
-router.post('/signin', (req, res, next) => {
+router.post('/', (req, res, next) => {
     passport.authenticate('local', {
       successRedirect: '/',
       failureRedirect: '/signin',
@@ -199,6 +199,16 @@ router.post('/signin', (req, res, next) => {
     })(req, res, next);
   });
   
+  router.post('/signin',
+  passport.authenticate('local', { failureRedirect: '/signin' }),
+  function(req, res) {
+     res.render('index',
+     {
+         layout:false,
+         user:req.user
+        });
+  });
+
   // Logout
   router.get('/logout', (req, res) => {
     req.logout();
