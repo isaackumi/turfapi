@@ -77,6 +77,7 @@ router.get('/users', async (req, res) => {
     
 
      await User.find()
+     .lean()
     .exec()
     .then(data=> {
         //console.log('Data', data);
@@ -100,7 +101,7 @@ router.get('/users/:id',async (req, res) => {
     const id = req.params.id
 
    await User.findById({_id:id})
-   .apply()
+   .lean()
     .exec()
     .then( data => {
        return res.send(data)

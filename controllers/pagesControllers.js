@@ -5,9 +5,9 @@ const { forwardAuthenticated ,ensureAuthenticated} = require('../config/auth');
 
 router.get('/', (req, res) => {
     console.log(req.session)
-    //console.log(req.user)
+    console.log(req.user)
     
-    res.render('index',{layout:false, user:req,title:'Home'});
+    res.render('index',{layout:false, user:req.user,title:'Home'});
 });
 
 router.get('/single', (req, res) => {
