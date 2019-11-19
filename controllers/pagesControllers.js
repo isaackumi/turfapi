@@ -3,9 +3,9 @@ const router = express.Router();
 const { Client } = require('./actions');
 const { forwardAuthenticated ,ensureAuthenticated} = require('../config/auth');
 
-router.get('/', ensureAuthenticated,(req, res) => {
+router.get('/',(req, res) => {
    
-    res.render('index',{layout:false, user:req.session.passport.user,title:'Home'});
+    res.render('index',{layout:false, user:'Isaac',title:'Home'});
 });
 
 router.get('/single', (req, res) => {

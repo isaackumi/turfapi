@@ -41,9 +41,6 @@ app.use(flash())
 
 // Global variables
 app.use(function(req, res, next) {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
     res.locals.user = req.user;
     next();
   });
@@ -74,8 +71,8 @@ app.use(session(
 app.use(function(req, res, next){
     res.locals.session = req.session;
     //console.log(res.locals.session)
-    res.locals.user = req.session.passport.user || null;
-    console.log('user from app.js : ',user)
+    //res.locals.user = req.session.passport.user || null;
+    //console.log('user from app.js : ',user)
     next();
   });
 
