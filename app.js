@@ -8,6 +8,7 @@ const bodyParser=require('body-parser');
 const path=require('path')
 const session=require('express-session')
 const morgan=require('morgan')
+const flash = require('connect-flash')
 const passport=require('passport')
 const cors = require('cors')
 //const user=require('./models/users');
@@ -16,8 +17,8 @@ const UserControllers=require('./controllers/userController')
 const BookingControllers=require('./controllers/bookingController')
 const EventControllers=require('./controllers/eventController')
 const pagesControllers=require('./controllers/pagesControllers')
-const UrlAuth=require('./controllers/index')
-const MessageUsController=require('./controllers/messageUsController')
+const UrlAuth = require('./controllers/index')
+const MessageUsController = require('./controllers/messageUsController')
 const userRoutes = require('./routes/users');
 
 require('./config/passport')(passport);
@@ -34,7 +35,18 @@ const db=require('./config/db_connection')
 mongoose.Promise = global.Promise;
 
 
+//use flash
+app.use(flash())
 
+
+// Global variables
+app.use(function(req, res, next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user;
+    next();
+  });
  
 // compress responses
 app.use(compression())
@@ -62,8 +74,8 @@ app.use(session(
 app.use(function(req, res, next){
     res.locals.session = req.session;
     //console.log(res.locals.session)
-    res.locals.user = req.user || null;
-    //console.log(res.locals.user)
+    res.locals.user = req.session.passport.user || null;
+    console.log('user from app.js : ',user)
     next();
   });
 

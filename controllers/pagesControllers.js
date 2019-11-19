@@ -3,11 +3,9 @@ const router = express.Router();
 const { Client } = require('./actions');
 const { forwardAuthenticated ,ensureAuthenticated} = require('../config/auth');
 
-router.get('/', (req, res) => {
-    console.log(req.session)
-    console.log(req.user)
-    
-    res.render('index',{layout:false, user:req.user,title:'Home'});
+router.get('/', ensureAuthenticated,(req, res) => {
+   
+    res.render('index',{layout:false, user:req.session.passport.user,title:'Home'});
 });
 
 router.get('/single', (req, res) => {
@@ -17,7 +15,7 @@ router.get('/single', (req, res) => {
 
 
 router.get('/signin',  (req, res) => {
-    res.render('signin',{layout:false});
+    res.render('signin',{layout:false,user:req.user});
 
 });
 
