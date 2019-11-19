@@ -219,7 +219,7 @@ h1, h2, h3, h4, h5,
       bottom: 0;
       z-index: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.7); }
+      background: none; }
   .bg-image > .container {
     position: relative;
     z-index: 1; }
@@ -653,7 +653,6 @@ h1, h2, h3, h4, h5,
     position: absolute;
     height: 100%;
     width: 100%;
-    background: #343a40;
     opacity: .9;
     border-bottom-right-radius: 0px; }
     @media (max-width: 991.98px) {
@@ -770,7 +769,7 @@ h1, h2, h3, h4, h5,
       color: #fff;
       margin-bottom: 1.5rem; }
     .image-absolute-box .box p {
-      color: rgba(255, 255, 255, 0.55); }
+      color: none; }
 
 .section-1 {
   margin-top: 10rem; }

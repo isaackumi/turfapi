@@ -18,7 +18,7 @@ router.post('/events', async function(req,res){
     );
  await event.save()
 .then( () =>  res.render('index',{layout:false}))
-.catch(err => res.status(500).json({'message':err}));
+.catch( () => req.render('error',{layout:false}));
 
 });
 

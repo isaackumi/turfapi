@@ -100,6 +100,7 @@ router.get('/users/:id',async (req, res) => {
     const id = req.params.id
 
    await User.findById({_id:id})
+   .apply()
     .exec()
     .then( data => {
        return res.send(data)
