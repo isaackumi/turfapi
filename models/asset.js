@@ -7,6 +7,12 @@ const eventSchema = new Schema({
     type: String,
     
   },
+
+  user:
+    {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    },
   
   price: {
     type: Number,

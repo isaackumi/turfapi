@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 /* eslint-disable no-undef */
 /*
 $(document).ready( () => {
@@ -120,3 +122,13 @@ populateRankings(json)
   }
 
  document.addEventListener('DOMContentLoaded', () => {loadRankings();}) 
+
+
+ // eslint-disable-next-line no-unused-vars
+ function bookBtn(){
+	if(document.getElementById('bookingBtn').clicked == true)
+	{
+	   Swal.fire('Booking Sent');
+	}
+	 
+ }

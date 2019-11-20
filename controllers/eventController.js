@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Event=require('../models/asset')
+const Swal = require('sweetalert2')
 
 
 
 
 router.post('/events', async function(req,res){
     console.log(req.body)
-    
+   
 	var event = new Event(
         {
         nameOfFacility : req.body.title,
@@ -16,9 +17,13 @@ router.post('/events', async function(req,res){
         username: req.body.username
     }
     );
- await event.save()
-.then( () =>  res.render('index',{layout:false}))
-.catch( () => req.render('error',{layout:false}));
+ const data = await event.save()
+if (data) {
+    Swal('Successful')
+    
+} else {
+    Swal('Booking Error')
+}
 
 });
 

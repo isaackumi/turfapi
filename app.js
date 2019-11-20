@@ -19,6 +19,7 @@ const EventControllers=require('./controllers/eventController')
 const pagesControllers=require('./controllers/pagesControllers')
 const UrlAuth = require('./controllers/index')
 const MessageUsController = require('./controllers/messageUsController')
+const sendmail = require('./controllers/email')
 const userRoutes = require('./routes/users');
 
 require('./config/passport')(passport);
@@ -35,8 +36,12 @@ const db=require('./config/db_connection')
 mongoose.Promise = global.Promise;
 
 
-//use flash
-app.use(flash())
+//use flas
+
+
+module.exports = function (app) {
+  app.use(flash());
+};
 
 
 // Global variables
@@ -107,7 +112,8 @@ UserControllers,
 EventControllers,
 pagesControllers,
 UrlAuth,
-MessageUsController
+MessageUsController,
+sendmail
 ]
 );
 
