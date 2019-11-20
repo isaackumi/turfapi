@@ -3,7 +3,7 @@ const chaiHttp =require('chai-http')
 const chaiAsPromised = require('chai-as-promised')
 //import sinon from 'sinon';
 const jwt = require('jsonwebtoken')
-const server = require('../app')
+const server = require('../server')
 const User = require('../models/users')
 
 process.env.NODE_ENV = 'test';
@@ -15,12 +15,6 @@ chai.should();
     
 
 describe('Users CRUD', () => {
-
-    beforeEach((done) => { //Before each test we empty the database
-        User.remove({}, (err) => { 
-           done();           
-        });        
-    });
 
     it('should create a user ', done => {
       chai.request(server)
@@ -38,20 +32,29 @@ describe('Users CRUD', () => {
       });
     });
 
-    it('should fetch all users', (done) => {
-      
-    });
-
-    it('should fetch a user', (done) => {
-      
-    });
-
-    it('should update a user', (done) => {
-      
-    });
-
-    it('should delete a user', (done) => {
-      
-    });
+    it( 'It should throw an error', done => {
+      const stub = sinon.stub( User, 'create' );
+      stub.throws();
+  
+      User.create( { firstName: 'Jefferson', lastName: 'Welbeck' } ).fetch().then( user => {
+        const data = user.toJSON();
+  
+        chai.request( server )
+          .post( `/signup` )
+          .send( {
+            email: 'iyzekkummy29@gmail.com',
+            password: 'teamMag'
+          } )
+          .end( ( error, response ) => {
+            response.should.have.status( 422 );
+            response.body.should.have.property( 'message' );
+  
+            stub.restore();
+            done();
+          } );
+      } ).catch( error => {
+        done();
+      } );
+    } );
   
 });

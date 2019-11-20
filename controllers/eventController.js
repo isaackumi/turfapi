@@ -1,31 +1,57 @@
 const express = require('express');
 const router = express.Router();
 const Event=require('../models/asset')
+//const User = require('../models/users')
 const Swal = require('sweetalert2')
+const User = require('../services/user')
+const mongoose = require('mongoose')
+
+
 
 
 
 
 router.post('/events', async function(req,res){
-    console.log(req.body)
+    
+
+    
+   const user = req.session.passport;
+   try {
+    const data = await User.findUserById(user)
+    if (mongoose.Types.ObjectId.isValid(data)) {
+        User.findOne({ _id: user.id }) 
+         .then((doc) => {
+            if (doc) {
+              console.log(doc);
+            } else {
+              console.log("no data exist for this id");
+            }
+         })
+        .catch((err) => {
+          console.log(err);
+         });
+     } else {
+       console.log("please provide correct id");
+     }
+    
+   } catch (error) {
+       console.error(error)
+   }
    
-	var event = new Event(
-        {
+    /*   
+   
+	var booking = {
         nameOfFacility : req.body.title,
         price : req.body.price,
-        location : req.body.location,
-        username: req.body.username
-    }
-    );
- const data = await event.save()
-if (data) {
-    Swal('Successful')
+        location : req.body.location
     
-} else {
-    Swal('Booking Error')
-}
+    }
+
+ */
 
 });
+
+
 
 
 router.get('/events', async (req, res) => {

@@ -7,7 +7,7 @@ module.exports = function ( req, res, next ) {
     return res.status( 403 ).send( { message: 'No token provided.' } );
   }
   // eslint-disable-next-line no-undef
-  jwt.verify( token, process.env.SECRET_KEY, async ( decodeError, decoded ) => {
+  jwt.verify( token, , async ( decodeError, decoded ) => {
     if ( decodeError ) {
       return res.status( 500 ).send( { message: 'Failed to authenticate token.' } );
     }

@@ -91,6 +91,16 @@ schema.statics.getByEmail=async (email)=>{
     return user;
 }
 
+schema.statics.getById=async (id)=>{
+    const user = await this.findOne({id});
+    if (!user) {
+       console.error('User not found');
+        
+    }
+    return user;
+}
+
+
 schema.methods.toJSON=()=>{
     const user=this;
     return {

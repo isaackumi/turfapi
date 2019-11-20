@@ -118,7 +118,7 @@ populateRankings(json)
 	
 			
 			const json =   JSON.parse(request.responseText);
-			console.log(json)
+			
 			return populateRankings(json);
 		 
 	};
@@ -130,6 +130,7 @@ populateRankings(json)
 
   function populateRankings(json)
   {
+    
 	  // clear existing table data
 	while(rankingsBody.firstChild){
 		rankingsBody.removeChild(rankingsBody.firstChild);
@@ -137,16 +138,29 @@ populateRankings(json)
 
 	// populate table
 	json.forEach( (row) => {
-		const tr = document.createElement('tr');
+        
+    const tr = document.createElement('tr');
 
+    for(cell in row){
+      //alert(cell);
+      const td = document.createElement('td');
+      td.textContent = row[cell];
+      //console.log(td)
+			tr.appendChild(td);
+      
+
+    }
+    
+/*
 		// Next another forEach
-		Object.keys.apply(row).forEach( (cell) => {
+	Array.from(row).forEach( (cell) => {
+      alert(cell);
 			//console.log(cell);
 			const td = document.createElement('td');
 			td.textContent = cell;
 			tr.appendChild(td);
 		});
-
+*/
 		rankingsBody.appendChild(tr);
 	});
 

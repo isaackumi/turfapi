@@ -36,7 +36,7 @@ const db=require('./config/db_connection')
 mongoose.Promise = global.Promise;
 
 
-//use flas
+
 
 
 module.exports = function (app) {

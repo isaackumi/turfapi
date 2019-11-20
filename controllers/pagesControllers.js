@@ -5,8 +5,9 @@ const { forwardAuthenticated ,ensureAuthenticated} = require('../config/auth');
 
 router.get('/',(req, res) => {
     //console.log('Testing from PagesController',req.query)
+    const user =  req.session.passport;
    
-    res.render('index',{layout:false,title:'Home'});
+    res.render('index',{layout:false,title:'Home',user:user});
 });
 
 router.get('/single', (req, res) => {

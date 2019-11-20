@@ -29,7 +29,7 @@ async function findUserByEmail (email) {
 async function findUserById(userId){
     try{
         return User.findOne({'_id': userId});
-    }catch(errro){
+    }catch(error){
         throw new Error(`Unable to connect to the database.`) 
     }
 }
@@ -71,3 +71,4 @@ async function deleteUserById(userId){
 }
 
 module.exports.findAllUsers = findAllUsers;
+module.exports.findUserById = findUserById;
