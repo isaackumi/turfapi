@@ -39,6 +39,7 @@ router.post('/sendmail', function(req, res){
 
 router.post('/sendmail', (req, res) => {
     try {
+        const user = req.session.passport;
     sgMail.setApiKey(`process.env.SEND_GRID`);
     const msg = {
     to: 'isaac.kumi@ashesi.edu.gh',
@@ -48,6 +49,7 @@ router.post('/sendmail', (req, res) => {
     html: `<p>${req.body.message}</p>`,
     };
     sgMail.send(msg);
+    res.render('index',{layout:false,user:user})
     } catch (error) {
         console.error(error)
         
