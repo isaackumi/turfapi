@@ -12,7 +12,7 @@ const router = express.Router();
 router.post('/sendmail', function(req, res){
     var options = {
         auth: {
-            api_key: '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'
+            api_key: 'process.env.SEND_GRID'
         }
     }
     var mailer = nodemailer.createTransport(sgTransport(options));
@@ -39,7 +39,7 @@ router.post('/sendmail', function(req, res){
 
 router.post('/sendmail', (req, res) => {
     try {
-    sgMail.setApiKey('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');
+    sgMail.setApiKey(`process.env.SEND_GRID`);
     const msg = {
     to: 'isaac.kumi@ashesi.edu.gh',
     from: req.body.email,
@@ -57,7 +57,7 @@ router.post('/sendmail', (req, res) => {
 
 router.post('/events', (req, res) => {
     try {
-        sgMail.setApiKey('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');
+        sgMail.setApiKey(`process.env.SEND_GRID`);
         const msg = {
         to: req.body.email,
         from: 'noreply@magicians.com',
