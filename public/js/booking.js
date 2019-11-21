@@ -138,38 +138,21 @@ populateRankings(json)
 	}
 
 	// populate table
-	json.forEach( (row) => {
-        
-    const tr = document.createElement('tr');
-
-    for(cell in row){
-      //alert(cell);
-      const td = document.createElement('td');
-      td.textContent = row[cell];
-      //console.log(td)
-			tr.appendChild(td);
-      
-
-    }
-    
-/*
-		// Next another forEach
-	Array.from(row).forEach( (cell) => {
-      alert(cell);
-			//console.log(cell);
-			const td = document.createElement('td');
-			td.textContent = cell;
-			tr.appendChild(td);
-		});
-*/
-		rankingsBody.appendChild(tr);
-	});
-
+  var user_data = '';
+  $.each(json, function(key, value){
+      user_data += '<tr>';
+      user_data += '<td>'+value._id+'</td>';
+      user_data += '<td>'+value.username+'</td>';
+      user_data += '<td>'+value.email+'</td>';
+      user_data += '<td>'+value.price+'</td>';
+      user_data += '</tr>'
+  });
+  $('#rankings-table').append(user_data);
   }
 
  document.addEventListener('DOMContentLoaded', () => {loadRankings();}) 
 
-
+/*
  // eslint-disable-next-line no-unused-vars
   const BookForm = document.getElementById('bookingForm');
   BookForm.addEventListener ('submit', function(e){
@@ -189,3 +172,4 @@ populateRankings(json)
             })
   })
 
+*/

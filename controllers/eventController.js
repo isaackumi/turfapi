@@ -22,9 +22,9 @@ router.post('/events', async function(req,res){
         User.findOne({ _id: user.id }) 
          .then((doc) => {
             if (doc) {
-              console.log(doc);
+              alert(doc);
             } else {
-              console.log("no data exist for this id");
+              alert("no data exist for this id");
             }
          })
         .catch((err) => {

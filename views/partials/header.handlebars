@@ -106,16 +106,16 @@
                   <form method="post" class="form-box" action='signup'>
                     <h3 class="h4 text-black mb-4">Sign Up</h3>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="username" name='username'>
+                      <input type="text" class="form-control" placeholder="username" name='username' required>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Email Addresss" name='email'>
+                      <input type="text" class="form-control" placeholder="Email Addresss" name='email' required>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" placeholder="Password" name='password'>
+                      <input type="password" class="form-control" placeholder="Password" name='password' required>
                     </div>
                     <div class="form-group mb-4">
-                      <input type="password" class="form-control" placeholder="Re-type Password" name='repeatPassword'>
+                      <input type="password" class="form-control" placeholder="Re-type Password" name='repeatPassword' required>
                     </div>
                     <div class="form-group">
                       <input type="submit" class="btn btn-success btn-pill" value="Sign up">
@@ -153,6 +153,7 @@
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Facility Name:</label>
             <input type="text" class="form-control" name="title" required >
+            
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Location:</label>
@@ -244,6 +245,7 @@
                 <th>Location</th>
                 <th class="text-right">Price</th>
                 <th class="text-right">Days left</th>
+                <th class="text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -251,6 +253,10 @@
                 <td>UCC</td>
                 <td class="text-right">45001</td>
                 <td class="text-right">5 days</td>
+                <td class="text-right">
+                  <button type="button" class="btn btn-primary badge-pill" style="width: 80px;">EDIT</button>
+                  <button type="button" class="btn btn-danger badge-pill" style="width: 80px;">DELETE</button>
+                </td>
               </tr>
               <tr><td>Chicago, Illinois, USA</td>
                 <td>University of Ghana</td>
