@@ -1,3 +1,4 @@
+/*
 window.onload = () => {
 
    const BOOKING_CARD = _$('.booking-card-btn');
@@ -25,7 +26,7 @@ window.onload = () => {
 };
 
 
-
+*/
 //// start here ////////////
 
 
